@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+#######################################################
+# this is a dev script, not necessary for regular use #
+#######################################################
+
 trap kill_ableton INT
 
 run_remote() {
@@ -21,10 +25,7 @@ kill_ableton() {
 }
 
 case "$1" in
-    "send")
-        send_packet "$@"
-        ;;
-    "ableton_log")
+    "log")
         less_ableton_log
         ;;
     "ableton")
@@ -32,6 +33,6 @@ case "$1" in
         tail_ableton_log
         ;;
     *)
-        echo "options: send, ableton_log, ableton"
+        echo "options: ableton_log, ableton"
         ;;
 esac
