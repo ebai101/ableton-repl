@@ -127,7 +127,7 @@ class REPL(ControlSurface):
         except BlockingIOError:
             pass
         except Exception as e:
-            print(f"Error handling client data: {e}")
+            logger.info(f"Error handling client data: {e}")
             self._cleanup_client(client)
 
     def _process_message_queues(self):
@@ -142,7 +142,7 @@ class REPL(ControlSurface):
                 except BlockingIOError:
                     break  # try again next tick
                 except Exception as e:
-                    print(f"Error sending message: {e}")
+                    logger.info(f"Error sending message: {e}")
                     self._cleanup_client(client)
                     break
 
@@ -150,7 +150,7 @@ class REPL(ControlSurface):
         """Clean up resources when a client disconnects"""
         try:
             addr = client.getpeername()
-            print(f"Client {addr} disconnected")
+            logger.info(f"Client {addr} disconnected")
         except:
             pass
 
