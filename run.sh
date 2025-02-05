@@ -4,7 +4,7 @@ trap kill_ableton INT
 
 run_remote() {
     rm -rf ~/Music/Ableton/User\ Library/Remote\ Scripts/AbletonREPL
-    cp -r remote ~/Music/Ableton/User\ Library/Remote\ Scripts/AbletonREPL
+    cp -r AbletonREPL ~/Music/Ableton/User\ Library/Remote\ Scripts/AbletonREPL
     open -a "Ableton Live 12 Suite"
 }
 
