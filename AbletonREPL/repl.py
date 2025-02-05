@@ -42,7 +42,7 @@ class REPL(ControlSurface):
 
             self.locals["Live"] = Live
         except ImportError as e:
-            logger.info(f"Could not import Live: {e}")
+            logger.info(f"could not import Live: {e}")
 
         super().__init__(c_instance=c_instance, specification=Specification)
 
@@ -78,7 +78,7 @@ class REPL(ControlSurface):
                         self.command_buffers[client] = ""
                         client.send(b">>> ")
                     except Exception as e:
-                        logger.info(f"Error accepting connection: {e}")
+                        logger.info(f"error accepting connection: {e}")
                 else:
                     self._handle_client_data(s)
 
@@ -127,11 +127,10 @@ class REPL(ControlSurface):
         except BlockingIOError:
             pass
         except Exception as e:
-            logger.info(f"Error handling client data: {e}")
+            logger.info(f"error handling client data: {e}")
             self._cleanup_client(client)
 
     def _process_message_queues(self):
-        """Process pending messages for all clients"""
         for client in list(self.message_queues.keys()):
             queue = self.message_queues[client]
             while queue:
@@ -142,15 +141,14 @@ class REPL(ControlSurface):
                 except BlockingIOError:
                     break  # try again next tick
                 except Exception as e:
-                    logger.info(f"Error sending message: {e}")
+                    logger.info(f"error sending message: {e}")
                     self._cleanup_client(client)
                     break
 
     def _cleanup_client(self, client):
-        """Clean up resources when a client disconnects"""
         try:
             addr = client.getpeername()
-            logger.info(f"Client {addr} disconnected")
+            logger.info(f"client {addr} disconnected")
         except:
             pass
 
